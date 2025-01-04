@@ -3,151 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <style>
-        /* General styling for the body */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* Light gray background */
-            display: flex; /* Center the calculator using flexbox */
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-            margin: 0;
-        }
-
-        /* Styling for the calculator container */
-        .calculator {
-            background: #fff; /* White background for the calculator */
-            padding: 20px;
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            width: 300px; /* Fixed width */
-        }
-
-        /* Styling for the display input */
-        .display {
-            width: 100%;
-            height: 60px;
-            background: #eaeaea; /* Light gray background */
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 20px; /* Space below the display */
-            font-size: 1.5rem; /* Large font size for better readability */
-            text-align: right; /* Align text to the right */
-            padding: 10px;
-            box-sizing: border-box; /* Include padding in the total width and height */
-        }
-
-        /* Styling for the button grid */
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Four equal columns */
-            gap: 10px; /* Space between buttons */
-        }
-
-        /* General button styling */
-        button {
-            height: 60px; /* Fixed button height */
-            background: #1887fd; /* Blue background */
-            color: white; /* White text */
-            border: none;
-            border-radius: 5px; /* Rounded corners */
-            font-size: 1.2rem; /* Slightly larger text */
-            cursor: pointer; /* Pointer cursor on hover */
-            transition: background 0.3s; /* Smooth transition for hover effect */
-        }
-
-        /* Hover effect for buttons */
-        button:hover {
-            background: #0056b3; /* Darker blue on hover */
-        }
-
-        /* Special styling for the clear button */
-        button.clear {
-            background: #FF5722; /* Orange background */
-        }
-
-        /* Hover effect for the clear button */
-        button.clear:hover {
-            background: #d84315; /* Darker orange on hover */
-        }
-    </style>
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator">
-        <!-- Input field for the calculator display -->
-        <input type="text" id="display" class="display" disabled>
-        <!-- Grid container for the calculator buttons -->
-        <div class="buttons">
-            <!-- Buttons for numbers and operators -->
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('/')">/</button>
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="appendValue('*')">*</button>
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="appendValue('-')">-</button>
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
-            <button onclick="calculate()">=</button>
-            <button onclick="appendValue('+')">+</button>
-            <button class="clear" onclick="clearDisplay()">C</button>
+        <input type="text" class="calculator-screen" id="screen" disabled>
+        <div class="calculator-buttons">
+            <button class="btn" onclick="clearScreen()">C</button>
+            <button class="btn" onclick="deleteLast()">DEL</button>
+            <button class="btn" onclick="appendOperator('/')">/</button>
+            <button class="btn" onclick="appendNumber(7)">7</button>
+            <button class="btn" onclick="appendNumber(8)">8</button>
+            <button class="btn" onclick="appendNumber(9)">9</button>
+            <button class="btn" onclick="appendOperator('*')">*</button>
+            <button class="btn" onclick="appendNumber(4)">4</button>
+            <button class="btn" onclick="appendNumber(5)">5</button>
+            <button class="btn" onclick="appendNumber(6)">6</button>
+            <button class="btn" onclick="appendOperator('-')">-</button>
+            <button class="btn" onclick="appendNumber(1)">1</button>
+            <button class="btn" onclick="appendNumber(2)">2</button>
+            <button class="btn" onclick="appendNumber(3)">3</button>
+            <button class="btn" onclick="appendOperator('+')">+</button>
+            <button class="btn" onclick="appendNumber(0)">0</button>
+            <button class="btn" onclick="appendNumber('.')">.</button>
+            <button class="btn btn-equal" onclick="calculate()">=</button>
         </div>
     </div>
-
-    <script>
-        // Reference to the display input field
-        const display = document.getElementById('display');
-
-        /**
-         * Appends a value (number or operator) to the display.
-         * @param {string} value - The value to append.
-         */
-        function appendValue(value) {
-            display.value += value;
-        }
-
-        /**
-         * Clears the calculator display.
-         */
-        function clearDisplay() {
-            display.value = '';
-        }
-
-        /**
-         * Evaluates the expression in the display and updates it with the result.
-         * If the expression is invalid, displays an error message.
-         */
-        function calculate() {
-            try {
-                // Use eval to calculate the result (caution: eval can execute arbitrary code)
-                display.value = eval(display.value);
-            } catch {
-                // Show 'Error' if evaluation fails
-                display.value = 'Error';
-            }
-        }
-
-        /**
-         * Handles keyboard input for the calculator.
-         * Listens for keydown events and processes number keys, operators, and Enter/Backspace keys.
-         */
-        document.addEventListener('keydown', (event) => {
-            const allowedKeys = '0123456789+-*/.';
-            if (allowedKeys.includes(event.key)) {
-                appendValue(event.key); // Append the key to the display if it's allowed
-            } else if (event.key === 'Enter') {
-                calculate(); // Calculate the result when Enter is pressed
-            } else if (event.key === 'Backspace') {
-                display.value = display.value.slice(0, -1); // Remove the last character
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
