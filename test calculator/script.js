@@ -1,31 +1,31 @@
-// Reference to the display input field
-const display = document.getElementById('display');
-
-/**
- * Appends a value (number or operator) to the display.
- * @param {string} value - The value to append.
- */
-function appendValue(value) {
-    display.value += value;
+function clearScreen() {
+    document.getElementById("screen").value = "";
 }
 
-/**
- * Clears the calculator display.
- */
-function clearDisplay() {
-    display.value = '';
+function deleteLast() {
+    let current = document.getElementById("screen").value;
+    document.getElementById("screen").value = current.slice(0, -1);
 }
 
-/**
- * Evaluates the expression in the display and updates it with the result.
- * If the expression is invalid, displays an error message.
- */
+function appendNumber(number) {
+    document.getElementById("screen").value += number;
+}
+
+function appendOperator(operator) {
+    let screen = document.getElementById("screen");
+    let lastChar = screen.value.slice(-1);
+    if (["+", "-", "*", "/"].includes(lastChar)) {
+        screen.value = screen.value.slice(0, -1) + operator;
+    } else {
+        screen.value += operator;
+    }
+}
+
 function calculate() {
     try {
-        // Use eval to calculate the result (caution: eval can execute arbitrary code)
-        display.value = eval(display.value);
-    } catch {
-        // Show 'Error' if evaluation fails
-        display.value = 'Error';
+        let result = eval(document.getElementById("screen").value);
+        document.getElementById("screen").value = result;
+    } catch (error) {
+        document.getElementById("screen").value = "Error";
     }
 }
