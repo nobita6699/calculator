@@ -65,3 +65,20 @@ button.clear {
 button.clear:hover {
     background: #d84315; /* Darker orange on hover */
 }
+
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    animation: scroll 10s linear infinite; /* 10s for smooth scrolling */
+}
+
+
+
+
+
+
+
+
