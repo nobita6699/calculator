@@ -14,6 +14,8 @@
             align-items: center;
             height: 100vh; /* Full viewport height */
             margin: 0;
+            flex-direction: column; /* To stack content vertically */
+            text-align: center; /* Center-align all content */
         }
 
         /* Styling for the calculator container */
@@ -71,6 +73,25 @@
         /* Hover effect for the clear button */
         button.clear:hover {
             background: #d84315; /* Darker orange on hover */
+        }
+
+        /* Marquee styles with CSS animations */
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            animation: scroll 10s linear infinite; /* Scroll duration for speed */
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Footer Section */
+        footer {
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -149,30 +170,18 @@
             }
         });
     </script>
-<br> <br> <br>
-            <h3> <a href="https://github.com/nobita6699/calculator.git"> THIS IS GIT LINK. ALL CODE ARE HERE </a></h3>
 
-    <br> <br> <br>
+    <!-- Git Link Section -->
+    <h3><a href="https://github.com/nobita6699/calculator.git">THIS IS GIT LINK. ALL CODE ARE HERE</a></h3>
 
-               <marquee behavior="alternate" bgcolor="green"> <h4> THIS CODE MADE BY nobita6699 </h4> </marquee> 
+    <!-- Marquee effect with CSS -->
+    <div class="marquee">
+        <h4>THIS CODE MADE BY nobita6699</h4>
+    </div>
 
-
-<marquee>ERROR5090</marquee>
-
-<marquee direction="up">ERROR5090</marquee> <br> <br> <br> <br> 
-
-<marquee
-  direction="down"
-  width="250"
-  height="200"
-  behavior="alternate"
-  style="border:solid">
-  <marquee behavior="alternate">THIS CODE MADE BY nobita6699</marquee>
-  
- 
-</marquee>
-<br> <br> <br> <br> <br> <br> <br> <br> 
-				<h2 style="text-align:center;">&copy;HOLDINGMAKER</h2>
-    
+    <!-- Footer Section -->
+    <footer>
+        <h2>&copy;HOLDINGMAKER</h2>
+    </footer>
 </body>
 </html>
